@@ -1,0 +1,19 @@
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "9898:15672"
+        volumes:
+            - ./volumes:/var/lib/rabbitmq
+        environment:
+            RABBITMQ_DEFAULT_USER: "guest"
+            RABBITMQ_DEFAULT_PASS: "guest"
+        restart: unless-stopped
+        networks:
+            - rabbitmq_network
+
+networks:
+    rabbitmq_network:
+        driver: bridge
