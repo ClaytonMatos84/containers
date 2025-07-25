@@ -1,2 +1,4 @@
 /n8n/volumes
 /rabbitmq/volumes
+/mysql/.env
+/wordpress/.env
