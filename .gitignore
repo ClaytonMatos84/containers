@@ -2,3 +2,7 @@
 /rabbitmq/volumes
 /mysql/.env
 /wordpress/.env
+/postgres/.env
+/postgres/volumes
+/mongodb/.env
+/mongodb/volumes

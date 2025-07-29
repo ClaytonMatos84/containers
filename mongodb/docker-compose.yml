@@ -1,0 +1,34 @@
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+            MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./volumes:/data/db
+        restart: unless-stopped
+        networks:
+            - mongodb_network
+
+    mongo-express:
+        image: mongo-express:latest
+        container_name: mongo-express
+        environment:
+            ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+            ME_CONFIG_MONGODB_SERVER: mongodb
+        ports:
+            - "9696:8081"
+        depends_on:
+            - mongodb
+        restart: unless-stopped
+        networks:
+            - mongodb_network
+
+networks:
+    mongodb_network:
+        driver: bridge
