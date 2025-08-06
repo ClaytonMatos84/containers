@@ -8,6 +8,7 @@ services:
             - ./volumes:/home/node/.n8n
         environment:
             GENERIC_TIMEZONE: "America/Sao_Paulo"
+            N8N_COMMUNITY_PACKAGES_ALLOW_TOOL_USAGE: true
         restart: unless-stopped
         networks:
             - n8n_network
