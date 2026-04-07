@@ -13,11 +13,11 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         restart: unless-stopped
         networks:
-            - int_mysql_network
+            - mysql_network
 
 volumes:
     db_data:
 
 networks:
-    int_mysql_network:
+    mysql_network:
         driver: bridge
